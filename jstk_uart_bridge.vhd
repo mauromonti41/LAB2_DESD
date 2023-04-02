@@ -134,7 +134,7 @@ begin
 		end if;
 	end process;
 
-	led_rgb_receive : process(rx_state,led_r,led_g,led_b,aclk)
+	led_rgb_receive : process(rx_state,aclk)
 	begin
 		if rising_edge(aclk) then
 			case (rx_state) is
