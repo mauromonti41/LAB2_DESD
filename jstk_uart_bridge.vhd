@@ -56,7 +56,7 @@ architecture Behavioral of jstk_uart_bridge is
 	----------position and button signals------------------
 	signal jstk_x_sign : std_logic_vector (JSTK_BITS downto 0);
 	signal jstk_y_sign : std_logic_vector (JSTK_BITS downto 0);
-	signal buttons : std_logic_vector (JSTK_BITS downto 0);
+	signal buttons 	   : std_logic_vector (JSTK_BITS downto 0);
     --------------------------------------------------------
 
 begin
@@ -64,9 +64,9 @@ begin
 ----------position and button signals------------------
 	m_axis_tvalid <= m_axis_tvalid_int;
 	s_axis_tready <= s_axis_tready_int;
-	jstk_x_sign <= jstk_x(jstk_x'HIGH downto 2);
-	jstk_y_sign <= jstk_y(jstk_y'HIGH downto 2);
-	buttons <=(JSTK_BITS downto 2 => '0', 1 => btn_trigger, 0 => btn_jstk);
+	jstk_x_sign  <= jstk_x(jstk_x'HIGH downto 2);
+	jstk_y_sign  <= jstk_y(jstk_y'HIGH downto 2);
+	buttons <=(JSTK_BITS downto 2 => '0') & btn_trigger & btn_jstk;
 -----------------------------------------------------------
 
 	reset_process : process(aclk, aresetn)
