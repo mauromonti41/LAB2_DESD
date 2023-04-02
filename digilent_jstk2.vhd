@@ -182,7 +182,7 @@ begin
 				case (state_sts) is
 					when GET_X_LSB =>
 						if s_axis_tvalid = '1' then
-							sig_jstk_x(7 TO 15) <= s_axis_tdata;
+							sig_jstk_x(8 TO 15) <= s_axis_tdata;
 							state_sts <= GET_X_MSB;
 						end if;
 					when GET_X_MSB =>
@@ -192,7 +192,7 @@ begin
 						end if;
 					when GET_Y_LSB =>
 						if s_axis_tvalid = '1'then
-							sig_jstk_y(7 TO 15) <= s_axis_tdata;
+							sig_jstk_y(8 TO 15) <= s_axis_tdata;
 							state_sts <= GET_Y_MSB;
 						end if;
 					when GET_Y_MSB =>
