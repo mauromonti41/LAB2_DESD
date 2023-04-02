@@ -10,7 +10,7 @@ entity jstk_uart_bridge is
 	Port ( 
 		aclk 			: in  STD_LOGIC;
 		aresetn			: in  STD_LOGIC;
-
+ 
 		-- Data going TO the PC (i.e., joystick position and buttons state)
 		m_axis_tvalid	: out STD_LOGIC;
 		m_axis_tdata	: out STD_LOGIC_VECTOR(7 downto 0);
@@ -50,7 +50,7 @@ architecture Behavioral of jstk_uart_bridge is
 	-- internal signals
 	signal m_axis_tvalid_int : std_logic;
 	signal s_axis_tready_int : std_logic;
-	signal delay_counter : positive range 1 to TX_DELAY := 0;
+	signal delay_counter     : integer range 0 to TX_DELAY := 0;
 
 
 	----------position and button signals------------------
@@ -107,7 +107,7 @@ begin
 				when SEND_JSTK_X =>
 					m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
-						m_axis_tdata <= jstk_x;
+						m_axis_tdata <= jstk_x_sign;
 						
 						tx_state <= SEND_JSTK_Y;
 						m_axis_tvalid_int <= '0';
@@ -115,7 +115,7 @@ begin
 				when SEND_JSTK_Y =>
 					m_axis_tvalid_int<= '1';
 					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
-						m_axis_tdata <= jstk_x;
+						m_axis_tdata <= jstk_y_sign;
 					
 						tx_state <= SEND_BUTTONS;
 						m_axis_tvalid_int <= '0';
