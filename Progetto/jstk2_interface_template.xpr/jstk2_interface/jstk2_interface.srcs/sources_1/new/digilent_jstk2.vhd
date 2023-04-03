@@ -46,9 +46,9 @@ architecture Behavioral of digilent_jstk2 is
 	-- Inter-packet delay plus the time needed to transfer 1 byte (for the CS de-assertion)
 	constant DELAY_CYCLES_PACKET		: integer := DELAY_US * (CLKFREQ / 1_000_000) + CLKFREQ / SPI_SCLKFREQ;
 	constant DELAY_CYCLES_BYTE			: integer := DELAY_CYCLES_PACKET/4;
-	constant COUNTER_BITS				: integer := integer(log2(real(DELAY_CYCLES_PACKET)))+1;
-	signal 	 DELAY_COUNTER				: unsigned(COUNTER_BITS-1 DOWNTO 0) := (others => '0');
-	signal   DELAY_TO_WAIT				: unsigned(COUNTER_BITS-1 DOWNTO 0)	:= to_unsigned(DELAY_CYCLES_PACKET, COUNTER_BITS);
+	--constant COUNTER_BITS				: integer := integer(log2(real(DELAY_CYCLES_PACKET)))+1;
+	signal 	 DELAY_COUNTER				: integer range 0 to DELAY_CYCLES_PACKET := 0;
+	signal   DELAY_TO_WAIT				: integer range 0 to DELAY_CYCLES_PACKET := DELAY_CYCLES_PACKET;
 	
 	--------------------------------------------------------------
 
@@ -85,27 +85,33 @@ architecture Behavioral of digilent_jstk2 is
 
 begin
 
-	m_axis_tvalid <= m_axis_tvalid_int;
+	--m_axis_tvalid <= m_axis_tvalid_int;
 	jstk_x <= sig_jstk_x(0 TO 9);
 	jstk_y <= sig_jstk_y(0 TO 9);
 	btn_jstk <= sig_btn(1);
 	btn_trigger <= sig_btn(0);	
-	
-	led_rgb_transfer : process(led_r,led_g,led_b,aclk,aresetn)
+
+	with state_cmd select m_axis_tvalid <=
+		'0' when WAIT_DELAY,
+		'1' when SEND_CMD,
+		'1' when SEND_BLUE,
+		'1' when SEND_GREEN,
+		'1' when SEND_RED,
+		'1' when SEND_DUMMY;
+
+	led_rgb_transfer : process(aclk)
 		begin
 			if aresetn = '0' then
 				state_cmd <= WAIT_DELAY;
 				precedent_state_cmd <= SEND_DUMMY;
 				--state_sts <= GET_X_LSB;
-				DELAY_COUNTER <= (Others => '0');
-				DELAY_TO_WAIT <= to_unsigned(DELAY_CYCLES_PACKET, COUNTER_BITS);
-				m_axis_tvalid_int <= '0';
+				DELAY_COUNTER <= 0;
+				DELAY_TO_WAIT <= DELAY_CYCLES_BYTE;
 			elsif rising_edge(aclk) then
 				case (state_cmd) is
 					when WAIT_DELAY =>
-					m_axis_tvalid_int <= '0';
 					if DELAY_COUNTER = DELAY_TO_WAIT  then
-						DELAY_COUNTER <= (Others => '0');
+						DELAY_COUNTER <= 0;
 						if precedent_state_cmd = SEND_CMD then
 							state_cmd <= SEND_RED;
 						elsif precedent_state_cmd = SEND_RED then
@@ -121,54 +127,54 @@ begin
 							DELAY_COUNTER <= DELAY_COUNTER + 1;	
 						end if;
 				when SEND_CMD =>
-					m_axis_tvalid_int <= '1';
-					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
+					--m_axis_tvalid_int <= '1';
+					if m_axis_tready = '1' then
 						m_axis_tdata <= CMDSETLEDRGB;
 						precedent_state_cmd <= SEND_CMD;
 						state_cmd <= WAIT_DELAY;
-						DELAY_TO_WAIT <= to_unsigned(DELAY_CYCLES_BYTE, COUNTER_BITS);
+						DELAY_TO_WAIT <= DELAY_CYCLES_BYTE;
 					end if;
 				when SEND_RED =>
-					m_axis_tvalid_int <= '1';
-					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
+					--m_axis_tvalid_int <= '1';
+					if m_axis_tready = '1' then
 						m_axis_tdata <= led_r;
 						precedent_state_cmd <= SEND_RED;
 						state_cmd <= WAIT_DELAY;
-						DELAY_TO_WAIT <= to_unsigned(DELAY_CYCLES_BYTE, COUNTER_BITS);
+						DELAY_TO_WAIT <= DELAY_CYCLES_BYTE;
 					end if;
 				when SEND_GREEN =>
-					m_axis_tvalid_int <= '1';
-					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
+					--m_axis_tvalid_int <= '1';
+					if m_axis_tready = '1' then
 						m_axis_tdata <= led_g;
 						precedent_state_cmd <= SEND_GREEN;
 						state_cmd <= WAIT_DELAY;
-						DELAY_TO_WAIT <= to_unsigned(DELAY_CYCLES_BYTE, COUNTER_BITS);
+						DELAY_TO_WAIT <= DELAY_CYCLES_BYTE;
 					end if;
 				when SEND_BLUE =>
-					m_axis_tvalid_int <= '1';
-					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
+					--m_axis_tvalid_int <= '1';
+					if m_axis_tready = '1' then
 						m_axis_tdata <= led_b;
 						precedent_state_cmd <= SEND_BLUE;
 						state_cmd <= WAIT_DELAY;
-						DELAY_TO_WAIT <= to_unsigned(DELAY_CYCLES_BYTE, COUNTER_BITS);
+						DELAY_TO_WAIT <= DELAY_CYCLES_BYTE;
 					end if;
 				when SEND_DUMMY =>
-					m_axis_tvalid_int <= '1';
-					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
+					--m_axis_tvalid_int <= '1';
+					if m_axis_tready = '1' then
 						m_axis_tdata <= (others => '0');
 						precedent_state_cmd <= SEND_DUMMY;
 						state_cmd <= WAIT_DELAY;
-						DELAY_TO_WAIT <= to_unsigned(DELAY_CYCLES_PACKET, COUNTER_BITS);
+						DELAY_TO_WAIT <= DELAY_CYCLES_BYTE;
 					end if;
 				when others =>
 					precedent_state_cmd <= SEND_DUMMY;
 					state_cmd <= WAIT_DELAY;
-					DELAY_TO_WAIT <= to_unsigned(DELAY_CYCLES_PACKET, COUNTER_BITS);
+					DELAY_TO_WAIT <= DELAY_CYCLES_PACKET;
 				end case;
 			end if;
 	end process;
 	
-	jstk_X_Y_Button_receive : process(aclk,aresetn)
+	jstk_X_Y_Button_receive : process(aclk)
 		begin
 			if aresetn = '0' then
 				state_sts <= GET_X_LSB;
