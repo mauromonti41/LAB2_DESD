@@ -2,20 +2,19 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Sun Apr  2 20:46:35 2023
-# Process ID: 4276
-# Current directory: C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1
+# Start of session at: Mon Apr  3 14:50:36 2023
+# Process ID: 27156
+# Current directory: C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1
 # Command line: vivado.exe -log design_1_AXI4Stream_UART_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_AXI4Stream_UART_0_0.tcl
-# Log file: C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1/design_1_AXI4Stream_UART_0_0.vds
-# Journal file: C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1\vivado.jou
+# Log file: C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1/design_1_AXI4Stream_UART_0_0.vds
+# Journal file: C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1\vivado.jou
 #-----------------------------------------------------------
 source design_1_AXI4Stream_UART_0_0.tcl -notrace
-create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1025.230 ; gain = 6.121
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/mauro/Desktop/jstk2_interface_template.xpr/ip_repo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/ip_repo'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Vivado/Vivado/2020.2/data/ip'.
 WARNING: [IP_Flow 19-4995] The host OS only allows 260 characters in a normal path. The IP cache path is more than 80 characters. If you experience issues with IP caching, please consider changing the IP cache to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. 
-Current IP cache path is c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.cache/ip 
+Current IP cache path is c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.cache/ip 
 Command: synth_design -top design_1_AXI4Stream_UART_0_0 -part xc7a35tcpg236-1 -mode out_of_context
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
@@ -23,26 +22,26 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 7096
+INFO: [Synth 8-7075] Helper process launched with PID 29656
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:34 . Memory (MB): peak = 1025.230 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:18 . Memory (MB): peak = 1015.512 ; gain = 0.000
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'design_1_AXI4Stream_UART_0_0' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/synth/design_1_AXI4Stream_UART_0_0.vhd:75]
+INFO: [Synth 8-638] synthesizing module 'design_1_AXI4Stream_UART_0_0' [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/synth/design_1_AXI4Stream_UART_0_0.vhd:75]
 	Parameter UART_BAUD_RATE bound to: 115200 - type: integer 
 	Parameter UART_CLOCK_FREQUENCY bound to: 100000000 - type: integer 
 	Parameter C_M00_AXIS_RX_TDATA_WIDTH bound to: 8 - type: integer 
 	Parameter C_S00_AXIS_TX_TDATA_WIDTH bound to: 8 - type: integer 
-INFO: [Synth 8-3491] module 'AXI4Stream_UART_v1_0' declared at 'c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:42' bound to instance 'U0' of component 'AXI4Stream_UART_v1_0' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/synth/design_1_AXI4Stream_UART_0_0.vhd:132]
-INFO: [Synth 8-638] synthesizing module 'AXI4Stream_UART_v1_0' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:82]
+INFO: [Synth 8-3491] module 'AXI4Stream_UART_v1_0' declared at 'c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:42' bound to instance 'U0' of component 'AXI4Stream_UART_v1_0' [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/synth/design_1_AXI4Stream_UART_0_0.vhd:132]
+INFO: [Synth 8-638] synthesizing module 'AXI4Stream_UART_v1_0' [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:82]
 	Parameter UART_BAUD_RATE bound to: 115200 - type: integer 
 	Parameter UART_CLOCK_FREQUENCY bound to: 100000000 - type: integer 
 	Parameter C_M00_AXIS_RX_TDATA_WIDTH bound to: 8 - type: integer 
 	Parameter C_S00_AXIS_TX_TDATA_WIDTH bound to: 8 - type: integer 
 	Parameter C_S_AXIS_TDATA_WIDTH bound to: 8 - type: integer 
-INFO: [Synth 8-3491] module 'AXI4Stream_UART_v1_0_S00_AXIS_TX' declared at 'c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0_S00_AXIS_TX.vhd:39' bound to instance 'AXI4Stream_UART_v1_0_S00_AXIS_TX_inst' of component 'AXI4Stream_UART_v1_0_S00_AXIS_TX' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:217]
-INFO: [Synth 8-638] synthesizing module 'AXI4Stream_UART_v1_0_S00_AXIS_TX' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0_S00_AXIS_TX.vhd:70]
+INFO: [Synth 8-3491] module 'AXI4Stream_UART_v1_0_S00_AXIS_TX' declared at 'c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0_S00_AXIS_TX.vhd:39' bound to instance 'AXI4Stream_UART_v1_0_S00_AXIS_TX_inst' of component 'AXI4Stream_UART_v1_0_S00_AXIS_TX' [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:217]
+INFO: [Synth 8-638] synthesizing module 'AXI4Stream_UART_v1_0_S00_AXIS_TX' [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0_S00_AXIS_TX.vhd:70]
 	Parameter C_S_AXIS_TDATA_WIDTH bound to: 8 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'AXI4Stream_UART_v1_0_S00_AXIS_TX' (1#1) [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0_S00_AXIS_TX.vhd:70]
+INFO: [Synth 8-256] done synthesizing module 'AXI4Stream_UART_v1_0_S00_AXIS_TX' (1#1) [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0_S00_AXIS_TX.vhd:70]
 	Parameter FIFO_MEMORY_TYPE bound to: block - type: string 
 	Parameter FIFO_WRITE_DEPTH bound to: 2048 - type: integer 
 	Parameter CASCADE_HEIGHT bound to: 0 - type: integer 
@@ -62,7 +61,7 @@ INFO: [Synth 8-256] done synthesizing module 'AXI4Stream_UART_v1_0_S00_AXIS_TX' 
 	Parameter ECC_MODE bound to: no_ecc - type: string 
 	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
 	Parameter WAKEUP_TIME bound to: 0 - type: integer 
-INFO: [Synth 8-3491] module 'xpm_fifo_async' declared at 'D:/Vivado/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:2142' bound to instance 'FIFO_DATA_TX' of component 'xpm_fifo_async' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:249]
+INFO: [Synth 8-3491] module 'xpm_fifo_async' declared at 'D:/Vivado/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:2142' bound to instance 'FIFO_DATA_TX' of component 'xpm_fifo_async' [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:249]
 INFO: [Synth 8-6157] synthesizing module 'xpm_fifo_async' [D:/Vivado/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:2142]
 	Parameter FIFO_MEMORY_TYPE bound to: block - type: string 
 	Parameter ECC_MODE bound to: no_ecc - type: string 
@@ -295,18 +294,18 @@ INFO: [Synth 8-6155] done synthesizing module 'xpm_fifo_base' (9#1) [D:/Vivado/V
 INFO: [Synth 8-6155] done synthesizing module 'xpm_fifo_async' (10#1) [D:/Vivado/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:2142]
 	Parameter UART_BAUD_RATE bound to: 115200 - type: integer 
 	Parameter UART_CLOCK_FREQUENCY bound to: 100000000 - type: integer 
-INFO: [Synth 8-3491] module 'UART_Manager' declared at 'c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Manager.vhd:42' bound to instance 'UART_Manager_inst' of component 'UART_Manager' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:290]
-INFO: [Synth 8-638] synthesizing module 'UART_Manager' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Manager.vhd:78]
+INFO: [Synth 8-3491] module 'UART_Manager' declared at 'c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Manager.vhd:42' bound to instance 'UART_Manager_inst' of component 'UART_Manager' [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:290]
+INFO: [Synth 8-638] synthesizing module 'UART_Manager' [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Manager.vhd:78]
 	Parameter UART_BAUD_RATE bound to: 115200 - type: integer 
 	Parameter UART_CLOCK_FREQUENCY bound to: 100000000 - type: integer 
 	Parameter BAUD_RATE bound to: 115200 - type: integer 
 	Parameter CLOCK_FREQUENCY bound to: 100000000 - type: integer 
-INFO: [Synth 8-3491] module 'UART_Engine' declared at 'c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Engine.vhd:62' bound to instance 'Inst_uart' of component 'UART_engine' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Manager.vhd:125]
-INFO: [Synth 8-638] synthesizing module 'UART_Engine' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Engine.vhd:81]
+INFO: [Synth 8-3491] module 'UART_Engine' declared at 'c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Engine.vhd:62' bound to instance 'Inst_uart' of component 'UART_engine' [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Manager.vhd:125]
+INFO: [Synth 8-638] synthesizing module 'UART_Engine' [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Engine.vhd:81]
 	Parameter BAUD_RATE bound to: 115200 - type: integer 
 	Parameter CLOCK_FREQUENCY bound to: 100000000 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'UART_Engine' (11#1) [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Engine.vhd:81]
-INFO: [Synth 8-256] done synthesizing module 'UART_Manager' (12#1) [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Manager.vhd:78]
+INFO: [Synth 8-256] done synthesizing module 'UART_Engine' (11#1) [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Engine.vhd:81]
+INFO: [Synth 8-256] done synthesizing module 'UART_Manager' (12#1) [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/UART_Manager.vhd:78]
 	Parameter FIFO_MEMORY_TYPE bound to: block - type: string 
 	Parameter FIFO_WRITE_DEPTH bound to: 2048 - type: integer 
 	Parameter CASCADE_HEIGHT bound to: 0 - type: integer 
@@ -326,35 +325,35 @@ INFO: [Synth 8-256] done synthesizing module 'UART_Manager' (12#1) [c:/Users/mau
 	Parameter ECC_MODE bound to: no_ecc - type: string 
 	Parameter SIM_ASSERT_CHK bound to: 0 - type: integer 
 	Parameter WAKEUP_TIME bound to: 0 - type: integer 
-INFO: [Synth 8-3491] module 'xpm_fifo_async' declared at 'D:/Vivado/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:2142' bound to instance 'FIFO_DATA_RX' of component 'xpm_fifo_async' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:326]
+INFO: [Synth 8-3491] module 'xpm_fifo_async' declared at 'D:/Vivado/Vivado/2020.2/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:2142' bound to instance 'FIFO_DATA_RX' of component 'xpm_fifo_async' [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:326]
 	Parameter C_M_AXIS_TDATA_WIDTH bound to: 8 - type: integer 
-INFO: [Synth 8-3491] module 'AXI4Stream_UART_v1_0_M00_AXIS_RX' declared at 'c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0_M00_AXIS_RX.vhd:40' bound to instance 'AXI4Stream_UART_v1_0_M00_AXIS_RX_inst' of component 'AXI4Stream_UART_v1_0_M00_AXIS_RX' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:367]
-INFO: [Synth 8-638] synthesizing module 'AXI4Stream_UART_v1_0_M00_AXIS_RX' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0_M00_AXIS_RX.vhd:70]
+INFO: [Synth 8-3491] module 'AXI4Stream_UART_v1_0_M00_AXIS_RX' declared at 'c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0_M00_AXIS_RX.vhd:40' bound to instance 'AXI4Stream_UART_v1_0_M00_AXIS_RX_inst' of component 'AXI4Stream_UART_v1_0_M00_AXIS_RX' [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:367]
+INFO: [Synth 8-638] synthesizing module 'AXI4Stream_UART_v1_0_M00_AXIS_RX' [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0_M00_AXIS_RX.vhd:70]
 	Parameter C_M_AXIS_TDATA_WIDTH bound to: 8 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'AXI4Stream_UART_v1_0_M00_AXIS_RX' (13#1) [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0_M00_AXIS_RX.vhd:70]
-INFO: [Synth 8-256] done synthesizing module 'AXI4Stream_UART_v1_0' (14#1) [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:82]
-INFO: [Synth 8-256] done synthesizing module 'design_1_AXI4Stream_UART_0_0' (15#1) [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/synth/design_1_AXI4Stream_UART_0_0.vhd:75]
+INFO: [Synth 8-256] done synthesizing module 'AXI4Stream_UART_v1_0_M00_AXIS_RX' (13#1) [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0_M00_AXIS_RX.vhd:70]
+INFO: [Synth 8-256] done synthesizing module 'AXI4Stream_UART_v1_0' (14#1) [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ipshared/453d/hdl/AXI4Stream_UART_v1_0.vhd:82]
+INFO: [Synth 8-256] done synthesizing module 'design_1_AXI4Stream_UART_0_0' (15#1) [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/synth/design_1_AXI4Stream_UART_0_0.vhd:75]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:39 . Memory (MB): peak = 1025.230 ; gain = 0.000
+Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:21 . Memory (MB): peak = 1015.512 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:40 . Memory (MB): peak = 1025.230 ; gain = 0.000
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:22 . Memory (MB): peak = 1015.512 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:40 . Memory (MB): peak = 1025.230 ; gain = 0.000
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:22 . Memory (MB): peak = 1015.512 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.034 . Memory (MB): peak = 1025.230 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 1015.512 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/design_1_AXI4Stream_UART_0_0_board.xdc] for cell 'U0'
-Finished Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/design_1_AXI4Stream_UART_0_0_board.xdc] for cell 'U0'
-Parsing XDC File [C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1/dont_touch.xdc]
+Parsing XDC File [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/design_1_AXI4Stream_UART_0_0_board.xdc] for cell 'U0'
+Finished Parsing XDC File [c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/design_1_AXI4Stream_UART_0_0_board.xdc] for cell 'U0'
+Parsing XDC File [C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1/dont_touch.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [D:/Vivado/Vivado/2020.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/design_1_AXI4Stream_UART_0_0_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/design_1_AXI4Stream_UART_0_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [D:/Vivado/Vivado/2020.2/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/design_1_AXI4Stream_UART_0_0_propImpl.xdc].
@@ -362,25 +361,25 @@ Resolution: To avoid this warning, move constraints listed in [.Xil/design_1_AXI
 INFO: [Project 1-1715] 3 XPM XDC files have been applied to the design.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1059.859 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1063.195 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.070 . Memory (MB): peak = 1065.895 ; gain = 6.035
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.070 . Memory (MB): peak = 1069.324 ; gain = 6.129
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:29 ; elapsed = 00:00:57 . Memory (MB): peak = 1065.895 ; gain = 40.664
+Finished Constraint Validation : Time (s): cpu = 00:00:26 ; elapsed = 00:00:38 . Memory (MB): peak = 1069.324 ; gain = 53.812
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:29 ; elapsed = 00:00:57 . Memory (MB): peak = 1065.895 ; gain = 40.664
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:26 ; elapsed = 00:00:38 . Memory (MB): peak = 1069.324 ; gain = 53.812
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1/dont_touch.xdc, line 9).
 Applied set_property KEEP_HIERARCHY = SOFT for U0/FIFO_DATA_TX/\gnuram_async_fifo.xpm_fifo_base_inst /\gen_cdc_pntr.rd_pntr_cdc_inst . (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for U0/FIFO_DATA_RX/\gnuram_async_fifo.xpm_fifo_base_inst /\gen_cdc_pntr.rd_pntr_cdc_inst . (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for U0/FIFO_DATA_TX/\gnuram_async_fifo.xpm_fifo_base_inst /\gen_cdc_pntr.wr_pntr_cdc_inst . (constraint file  auto generated constraint).
@@ -395,8 +394,10 @@ Applied set_property KEEP_HIERARCHY = SOFT for U0/FIFO_DATA_TX/\gnuram_async_fif
 Applied set_property KEEP_HIERARCHY = SOFT for U0/FIFO_DATA_RX/\gnuram_async_fifo.xpm_fifo_base_inst /xpm_fifo_rst_inst/\gen_rst_ic.wrst_rd_inst . (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for U0/FIFO_DATA_TX. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for U0/FIFO_DATA_RX. (constraint file  auto generated constraint).
+Applied set_property KEEP = true for UART_RX. (constraint file  auto generated constraint).
+Applied set_property KEEP = true for U0/UART_Manager_inst/Inst_uart/tx. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:58 . Memory (MB): peak = 1065.895 ; gain = 40.664
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:38 . Memory (MB): peak = 1069.324 ; gain = 53.812
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'gen_rst_ic.curr_wrst_state_reg' in module 'xpm_fifo_rst__xdcDup__1'
 INFO: [Synth 8-802] inferred FSM for state register 'gen_rst_ic.curr_rrst_state_reg' in module 'xpm_fifo_rst__xdcDup__1'
@@ -496,7 +497,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'gen_rst_ic.curr_rrst_state
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'gen_fwft.curr_fwft_state_reg' using encoding 'sequential' in module 'xpm_fifo_base'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:31 ; elapsed = 00:01:00 . Memory (MB): peak = 1065.895 ; gain = 40.664
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:40 . Memory (MB): peak = 1069.324 ; gain = 53.812
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -567,7 +568,7 @@ INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:01:06 . Memory (MB): peak = 1065.895 ; gain = 40.664
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:45 . Memory (MB): peak = 1069.324 ; gain = 53.812
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
@@ -591,7 +592,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:46 ; elapsed = 00:01:19 . Memory (MB): peak = 1065.895 ; gain = 40.664
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:43 ; elapsed = 00:00:58 . Memory (MB): peak = 1069.324 ; gain = 53.812
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
@@ -599,7 +600,7 @@ Start Timing Optimization
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:47 ; elapsed = 00:01:19 . Memory (MB): peak = 1065.895 ; gain = 40.664
+Finished Timing Optimization : Time (s): cpu = 00:00:43 ; elapsed = 00:00:58 . Memory (MB): peak = 1069.324 ; gain = 53.812
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -620,7 +621,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:48 ; elapsed = 00:01:20 . Memory (MB): peak = 1076.594 ; gain = 51.363
+Finished Technology Mapping : Time (s): cpu = 00:00:44 ; elapsed = 00:00:59 . Memory (MB): peak = 1077.770 ; gain = 62.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -638,37 +639,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:59 ; elapsed = 00:01:35 . Memory (MB): peak = 1076.594 ; gain = 51.363
+Finished IO Insertion : Time (s): cpu = 00:00:50 ; elapsed = 00:01:06 . Memory (MB): peak = 1077.770 ; gain = 62.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:59 ; elapsed = 00:01:35 . Memory (MB): peak = 1076.594 ; gain = 51.363
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:50 ; elapsed = 00:01:06 . Memory (MB): peak = 1077.770 ; gain = 62.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:59 ; elapsed = 00:01:35 . Memory (MB): peak = 1076.594 ; gain = 51.363
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:50 ; elapsed = 00:01:06 . Memory (MB): peak = 1077.770 ; gain = 62.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:59 ; elapsed = 00:01:35 . Memory (MB): peak = 1076.594 ; gain = 51.363
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:50 ; elapsed = 00:01:06 . Memory (MB): peak = 1077.770 ; gain = 62.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:59 ; elapsed = 00:01:35 . Memory (MB): peak = 1076.594 ; gain = 51.363
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:50 ; elapsed = 00:01:06 . Memory (MB): peak = 1077.770 ; gain = 62.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:59 ; elapsed = 00:01:35 . Memory (MB): peak = 1076.594 ; gain = 51.363
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:50 ; elapsed = 00:01:06 . Memory (MB): peak = 1077.770 ; gain = 62.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -698,29 +699,29 @@ Report Cell Usage:
 |12    |FDSE     |    23|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:59 ; elapsed = 00:01:35 . Memory (MB): peak = 1076.594 ; gain = 51.363
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:50 ; elapsed = 00:01:06 . Memory (MB): peak = 1077.770 ; gain = 62.258
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:41 ; elapsed = 00:01:29 . Memory (MB): peak = 1076.594 ; gain = 10.699
-Synthesis Optimization Complete : Time (s): cpu = 00:01:00 ; elapsed = 00:01:35 . Memory (MB): peak = 1076.594 ; gain = 51.363
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:33 ; elapsed = 00:01:01 . Memory (MB): peak = 1077.770 ; gain = 8.445
+Synthesis Optimization Complete : Time (s): cpu = 00:00:50 ; elapsed = 00:01:06 . Memory (MB): peak = 1077.770 ; gain = 62.258
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 1076.594 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 1086.551 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 54 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1082.379 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1090.461 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
 108 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:10 ; elapsed = 00:01:56 . Memory (MB): peak = 1082.379 ; gain = 57.148
-INFO: [Common 17-1381] The checkpoint 'C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1/design_1_AXI4Stream_UART_0_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:01:00 ; elapsed = 00:01:24 . Memory (MB): peak = 1090.461 ; gain = 74.949
+INFO: [Common 17-1381] The checkpoint 'C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1/design_1_AXI4Stream_UART_0_0.dcp' has been generated.
 WARNING: [Common 17-576] 'use_project_ipc' is deprecated. This option is deprecated and no longer used.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP design_1_AXI4Stream_UART_0_0, cache-ID = 1f4d8f91de82d599
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP design_1_AXI4Stream_UART_0_0, cache-ID = 36c3ea195889d778
 INFO: [Coretcl 2-1174] Renamed 43 cell refs.
-INFO: [Common 17-1381] The checkpoint 'C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1/design_1_AXI4Stream_UART_0_0.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/design_1_AXI4Stream_UART_0_0_synth_1/design_1_AXI4Stream_UART_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file design_1_AXI4Stream_UART_0_0_utilization_synth.rpt -pb design_1_AXI4Stream_UART_0_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Apr  2 20:49:00 2023...
+INFO: [Common 17-206] Exiting Vivado at Mon Apr  3 14:52:15 2023...

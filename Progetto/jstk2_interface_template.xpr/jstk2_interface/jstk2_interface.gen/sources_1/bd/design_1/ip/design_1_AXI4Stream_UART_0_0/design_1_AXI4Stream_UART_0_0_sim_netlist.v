@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-// Date        : Sun Apr  2 20:49:00 2023
+// Date        : Mon Apr  3 14:52:14 2023
 // Host        : LAPTOP-DUQD03P4 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/design_1_AXI4Stream_UART_0_0_sim_netlist.v
+//               c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/design_1_AXI4Stream_UART_0_0_sim_netlist.v
 // Design      : design_1_AXI4Stream_UART_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -44,7 +44,7 @@ module design_1_AXI4Stream_UART_0_0
   (* x_interface_info = "xilinx.com:interface:axis:1.0 S00_AXIS_TX TDATA" *) input [7:0]s00_axis_tx_tdata;
   (* x_interface_info = "xilinx.com:interface:axis:1.0 S00_AXIS_TX TVALID" *) input s00_axis_tx_tvalid;
 
-  wire UART_RX;
+  (* RTL_KEEP = "yes" *) (* x_interface_info = "xilinx.com:interface:uart:1.0 UART RxD" *) wire UART_RX;
   wire UART_TX;
   wire clk_uart;
   wire m00_axis_rx_aclk;
@@ -321,8 +321,8 @@ endmodule
 
 (* ORIG_REF_NAME = "UART_Engine" *) 
 module design_1_AXI4Stream_UART_0_0_UART_Engine
-   (E,
-    UART_TX,
+   (UART_TX,
+    E,
     \gen_fwft.empty_fwft_i_reg ,
     \gen_fwft.empty_fwft_i_reg_0 ,
     \gen_fwft.empty_fwft_i_reg_1 ,
@@ -334,8 +334,8 @@ module design_1_AXI4Stream_UART_0_0_UART_Engine
     \FSM_onehot_uart_tx_state_reg[2]_0 ,
     Q,
     UART_RX);
-  output [0:0]E;
   output UART_TX;
+  output [0:0]E;
   output \gen_fwft.empty_fwft_i_reg ;
   output \gen_fwft.empty_fwft_i_reg_0 ;
   output \gen_fwft.empty_fwft_i_reg_1 ;
@@ -368,7 +368,7 @@ module design_1_AXI4Stream_UART_0_0_UART_Engine
   wire \FSM_onehot_uart_tx_state_reg_n_0_[2] ;
   wire [7:0]Q;
   wire UART_RX;
-  wire UART_TX;
+  (* RTL_KEEP = "yes" *) wire UART_TX;
   wire clk_uart;
   wire [5:1]data0;
   wire data_stream_in_ack;
@@ -1412,6 +1412,7 @@ module design_1_AXI4Stream_UART_0_0_UART_Engine
         .I1(tx_baud_tick_reg_n_0),
         .I2(\FSM_onehot_uart_tx_state_reg_n_0_[0] ),
         .O(uart_tx_data_i_2_n_0));
+  (* KEEP = "yes" *) 
   FDSE #(
     .INIT(1'b1)) 
     uart_tx_data_reg
@@ -1555,8 +1556,8 @@ endmodule
 
 (* ORIG_REF_NAME = "UART_Manager" *) 
 module design_1_AXI4Stream_UART_0_0_UART_Manager
-   (wr_en,
-    UART_TX,
+   (UART_TX,
+    wr_en,
     rd_en,
     Q,
     rst,
@@ -1564,8 +1565,8 @@ module design_1_AXI4Stream_UART_0_0_UART_Manager
     empty,
     dout,
     UART_RX);
-  output wr_en;
   output UART_TX;
+  output wr_en;
   output rd_en;
   output [7:0]Q;
   input rst;

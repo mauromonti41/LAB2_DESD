@@ -1,14 +1,13 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x55B37102A92F49C3",
+      "boundary_crc": "0x7CDC72F2E486A675",
       "device": "xc7a35tcpg236-1",
       "gen_directory": "../../../../jstk2_interface.gen/sources_1/bd/design_1",
       "name": "design_1",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2020.2",
-      "validated": "true"
+      "tool_version": "2020.2"
     },
     "design_tree": {
       "AXI4Stream_UART_0": "",
@@ -23,48 +22,30 @@
         "mode": "Master",
         "vlnv": "xilinx.com:interface:spi_rtl:1.0"
       },
-      "UART_0": {
+      "usb_uart": {
         "mode": "Master",
         "vlnv": "xilinx.com:interface:uart_rtl:1.0"
       }
     },
     "ports": {
-      "reset_0": {
+      "reset": {
         "type": "rst",
         "direction": "I",
         "parameters": {
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
           "POLARITY": {
             "value": "ACTIVE_HIGH"
           }
         }
       },
-      "clk_in1_0": {
+      "sys_clock": {
         "type": "clk",
         "direction": "I",
         "parameters": {
-          "CLK_DOMAIN": {
-            "value": "design_1_clk_in1_0",
-            "value_src": "default"
-          },
           "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
+            "value": "100000000"
           },
           "PHASE": {
-            "value": "0.000",
-            "value_src": "default"
+            "value": "0.000"
           }
         }
       }
@@ -74,7 +55,15 @@
         "vlnv": "DigiLAB:ip:AXI4Stream_UART:1.1",
         "xci_name": "design_1_AXI4Stream_UART_0_0",
         "xci_path": "ip\\design_1_AXI4Stream_UART_0_0\\design_1_AXI4Stream_UART_0_0.xci",
-        "inst_hier_path": "AXI4Stream_UART_0"
+        "inst_hier_path": "AXI4Stream_UART_0",
+        "parameters": {
+          "UART_BOARD_INTERFACE": {
+            "value": "usb_uart"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          }
+        }
       },
       "axi4stream_spi_master_0": {
         "vlnv": "DigiLAB:ip:axi4stream_spi_master:1.0",
@@ -101,6 +90,9 @@
           },
           "RESET_BOARD_INTERFACE": {
             "value": "reset"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
           }
         }
       },
@@ -108,7 +100,15 @@
         "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
         "xci_name": "design_1_proc_sys_reset_0_0",
         "xci_path": "ip\\design_1_proc_sys_reset_0_0\\design_1_proc_sys_reset_0_0.xci",
-        "inst_hier_path": "proc_sys_reset_0"
+        "inst_hier_path": "proc_sys_reset_0",
+        "parameters": {
+          "RESET_BOARD_INTERFACE": {
+            "value": "reset"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          }
+        }
       },
       "jstk_uart_bridge_0": {
         "vlnv": "xilinx.com:module_ref:jstk_uart_bridge:1.0",
@@ -156,18 +156,6 @@
               "HAS_TLAST": {
                 "value": "0",
                 "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "ip_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "ip_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
-                "value_src": "ip_prop"
               }
             },
             "port_maps": {
@@ -222,18 +210,6 @@
               "HAS_TLAST": {
                 "value": "0",
                 "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "ip_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "ip_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
-                "value_src": "ip_prop"
               }
             },
             "port_maps": {
@@ -266,18 +242,6 @@
               "ASSOCIATED_RESET": {
                 "value": "aresetn",
                 "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "ip_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "ip_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
-                "value_src": "ip_prop"
               }
             }
           },
@@ -370,18 +334,6 @@
               "HAS_TLAST": {
                 "value": "0",
                 "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "ip_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "ip_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
-                "value_src": "ip_prop"
               }
             },
             "port_maps": {
@@ -436,18 +388,6 @@
               "HAS_TLAST": {
                 "value": "0",
                 "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "ip_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "ip_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
-                "value_src": "ip_prop"
               }
             },
             "port_maps": {
@@ -476,18 +416,6 @@
               "ASSOCIATED_RESET": {
                 "value": "aresetn",
                 "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "ip_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "ip_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
-                "value_src": "ip_prop"
               }
             }
           },
@@ -542,22 +470,10 @@
           "axi4stream_spi_master_0/SPI_M"
         ]
       },
-      "AXI4Stream_UART_0_UART": {
-        "interface_ports": [
-          "UART_0",
-          "AXI4Stream_UART_0/UART"
-        ]
-      },
       "axi4stream_spi_master_0_M_AXIS": {
         "interface_ports": [
           "axi4stream_spi_master_0/M_AXIS",
           "digilent_jstk2_0/s_axis"
-        ]
-      },
-      "jstk_uart_bridge_0_m_axis": {
-        "interface_ports": [
-          "jstk_uart_bridge_0/m_axis",
-          "AXI4Stream_UART_0/S00_AXIS_TX"
         ]
       },
       "digilent_jstk2_0_m_axis": {
@@ -566,21 +482,26 @@
           "axi4stream_spi_master_0/S_AXIS"
         ]
       },
+      "jstk_uart_bridge_0_m_axis": {
+        "interface_ports": [
+          "jstk_uart_bridge_0/m_axis",
+          "AXI4Stream_UART_0/S00_AXIS_TX"
+        ]
+      },
       "AXI4Stream_UART_0_M00_AXIS_RX": {
         "interface_ports": [
           "AXI4Stream_UART_0/M00_AXIS_RX",
           "jstk_uart_bridge_0/s_axis"
         ]
+      },
+      "AXI4Stream_UART_0_UART": {
+        "interface_ports": [
+          "usb_uart",
+          "AXI4Stream_UART_0/UART"
+        ]
       }
     },
     "nets": {
-      "reset_0_1": {
-        "ports": [
-          "reset_0",
-          "clk_wiz_0/reset",
-          "proc_sys_reset_0/ext_reset_in"
-        ]
-      },
       "clk_wiz_0_locked": {
         "ports": [
           "clk_wiz_0/locked",
@@ -657,9 +578,16 @@
           "AXI4Stream_UART_0/rst"
         ]
       },
-      "clk_in1_0_1": {
+      "reset_1": {
         "ports": [
-          "clk_in1_0",
+          "reset",
+          "proc_sys_reset_0/ext_reset_in",
+          "clk_wiz_0/reset"
+        ]
+      },
+      "sys_clock_1": {
+        "ports": [
+          "sys_clock",
           "clk_wiz_0/clk_in1"
         ]
       }

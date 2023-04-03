@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
---Date        : Mon Apr  3 13:38:33 2023
+--Date        : Mon Apr  3 14:50:20 2023
 --Host        : LAPTOP-DUQD03P4 running 64-bit major release  (build 9200)
 --Command     : generate_target design_1_wrapper.bd
 --Design      : design_1_wrapper
@@ -17,17 +17,16 @@ entity design_1_wrapper is
     SPI_M_0_io1_io : inout STD_LOGIC;
     SPI_M_0_sck_io : inout STD_LOGIC;
     SPI_M_0_ss_io : inout STD_LOGIC;
-    UART_0_rxd : in STD_LOGIC;
-    UART_0_txd : out STD_LOGIC;
-    clk_in1_0 : in STD_LOGIC;
-    reset_0 : in STD_LOGIC
+    reset : in STD_LOGIC;
+    sys_clock : in STD_LOGIC;
+    usb_uart_rxd : in STD_LOGIC;
+    usb_uart_txd : out STD_LOGIC
   );
 end design_1_wrapper;
 
 architecture STRUCTURE of design_1_wrapper is
   component design_1 is
   port (
-    reset_0 : in STD_LOGIC;
     SPI_M_0_sck_t : out STD_LOGIC;
     SPI_M_0_io1_o : out STD_LOGIC;
     SPI_M_0_ss_t : out STD_LOGIC;
@@ -40,9 +39,10 @@ architecture STRUCTURE of design_1_wrapper is
     SPI_M_0_ss_i : in STD_LOGIC;
     SPI_M_0_io1_i : in STD_LOGIC;
     SPI_M_0_io0_i : in STD_LOGIC;
-    UART_0_txd : out STD_LOGIC;
-    UART_0_rxd : in STD_LOGIC;
-    clk_in1_0 : in STD_LOGIC
+    usb_uart_txd : out STD_LOGIC;
+    usb_uart_rxd : in STD_LOGIC;
+    reset : in STD_LOGIC;
+    sys_clock : in STD_LOGIC
   );
   end component design_1;
   component IOBUF is
@@ -108,9 +108,9 @@ design_1_i: component design_1
       SPI_M_0_ss_i => SPI_M_0_ss_i,
       SPI_M_0_ss_o => SPI_M_0_ss_o,
       SPI_M_0_ss_t => SPI_M_0_ss_t,
-      UART_0_rxd => UART_0_rxd,
-      UART_0_txd => UART_0_txd,
-      clk_in1_0 => clk_in1_0,
-      reset_0 => reset_0
+      reset => reset,
+      sys_clock => sys_clock,
+      usb_uart_rxd => usb_uart_rxd,
+      usb_uart_txd => usb_uart_txd
     );
 end STRUCTURE;

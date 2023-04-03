@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
--- Date        : Sun Apr  2 20:49:00 2023
+-- Date        : Mon Apr  3 14:52:15 2023
 -- Host        : LAPTOP-DUQD03P4 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/design_1_AXI4Stream_UART_0_0_sim_netlist.vhdl
+--               c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/design_1_AXI4Stream_UART_0_0_sim_netlist.vhdl
 -- Design      : design_1_AXI4Stream_UART_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -16,8 +16,8 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity design_1_AXI4Stream_UART_0_0_UART_Engine is
   port (
-    E : out STD_LOGIC_VECTOR ( 0 to 0 );
     UART_TX : out STD_LOGIC;
+    E : out STD_LOGIC_VECTOR ( 0 to 0 );
     \gen_fwft.empty_fwft_i_reg\ : out STD_LOGIC;
     \gen_fwft.empty_fwft_i_reg_0\ : out STD_LOGIC;
     \gen_fwft.empty_fwft_i_reg_1\ : out STD_LOGIC;
@@ -52,6 +52,8 @@ architecture STRUCTURE of design_1_AXI4Stream_UART_0_0_UART_Engine is
   signal \FSM_onehot_uart_tx_state_reg_n_0_[1]\ : STD_LOGIC;
   signal \FSM_onehot_uart_tx_state_reg_n_0_[2]\ : STD_LOGIC;
   signal \^uart_tx\ : STD_LOGIC;
+  attribute RTL_KEEP : string;
+  attribute RTL_KEEP of UART_TX : signal is "yes";
   signal data0 : STD_LOGIC_VECTOR ( 5 downto 1 );
   signal data_stream_in_ack : STD_LOGIC;
   signal data_stream_in_done : STD_LOGIC;
@@ -154,6 +156,8 @@ architecture STRUCTURE of design_1_AXI4Stream_UART_0_0_UART_Engine is
   attribute SOFT_HLUTNM of \uart_tx_count[1]_i_1\ : label is "soft_lutpair51";
   attribute SOFT_HLUTNM of \uart_tx_count[2]_i_2\ : label is "soft_lutpair51";
   attribute SOFT_HLUTNM of uart_tx_data_i_2 : label is "soft_lutpair55";
+  attribute KEEP : string;
+  attribute KEEP of uart_tx_data_reg : label is "yes";
   attribute SOFT_HLUTNM of \uart_tx_data_vec[0]_i_1\ : label is "soft_lutpair52";
   attribute SOFT_HLUTNM of \uart_tx_data_vec[7]_i_1\ : label is "soft_lutpair46";
 begin
@@ -13029,8 +13033,8 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity design_1_AXI4Stream_UART_0_0_UART_Manager is
   port (
-    wr_en : out STD_LOGIC;
     UART_TX : out STD_LOGIC;
+    wr_en : out STD_LOGIC;
     rd_en : out STD_LOGIC;
     Q : out STD_LOGIC_VECTOR ( 7 downto 0 );
     rst : in STD_LOGIC;

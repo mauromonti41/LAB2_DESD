@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1'
+HD_PWD='C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

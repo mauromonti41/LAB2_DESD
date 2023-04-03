@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/impl_1/design_1_wrapper.tcl"
+  variable script "C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/impl_1/design_1_wrapper.tcl"
   variable category "vivado_impl"
 }
 
@@ -115,9 +115,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 set_msg_config  -id {Vivado 12-1790}  -string {{Evaluation} {features} {should} {NOT} {be} {used} {in} {production} {systems.}}  -new_severity {WARNING} 
 set_msg_config  -id {Designutils 20-3303}  -string {{HDPYFinalizeIO}}  -new_severity {INFO} 
 set_msg_config  -id {Place 30-73}  -string {{axi_spi}}  -new_severity {WARNING} 
@@ -138,31 +135,30 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 2
-  set_param synth.incrementalSynthesisCache C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/.Xil/Vivado-39648-LAPTOP-DUQD03P4/incrSyn
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a35tcpg236-1
-  set_property board_part_repo_paths {C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.board} [current_project]
+  set_property board_part_repo_paths {C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.board} [current_project]
   set_property board_part digilentinc.com:basys3:part0:1.1 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.cache/wt [current_project]
-  set_property parent.project_path C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.xpr [current_project]
-  set_property ip_repo_paths C:/Users/mauro/Desktop/jstk2_interface_template.xpr/ip_repo [current_project]
+  set_property webtalk.parent_dir C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.cache/wt [current_project]
+  set_property parent.project_path C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.xpr [current_project]
+  set_property ip_repo_paths C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/ip_repo [current_project]
   update_ip_catalog
-  set_property ip_output_repo C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.cache/ip [current_project]
+  set_property ip_output_repo C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/design_1_wrapper.dcp
+  add_files -quiet C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/design_1_wrapper.dcp
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
-  add_files C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.srcs/sources_1/bd/design_1/design_1.bd
+  add_files C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.srcs/sources_1/bd/design_1/design_1.bd
   set_param project.isImplRun false
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.srcs/constrs_1/new/io.xdc
+  read_xdc C:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.srcs/constrs_1/new/io.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

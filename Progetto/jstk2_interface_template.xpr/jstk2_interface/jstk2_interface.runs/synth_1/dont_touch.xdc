@@ -24,4 +24,4 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_js
 # IP: bd/design_1/ip/design_1_digilent_jstk2_0_0/design_1_digilent_jstk2_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==design_1_digilent_jstk2_0_0 || ORIG_REF_NAME==design_1_digilent_jstk2_0_0} -quiet] -quiet
 
-# XDC: c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/design_1_ooc.xdc
+# XDC: c:/Users/mauro/Documents/Github/LAB2_DESD/Progetto/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/design_1_ooc.xdc

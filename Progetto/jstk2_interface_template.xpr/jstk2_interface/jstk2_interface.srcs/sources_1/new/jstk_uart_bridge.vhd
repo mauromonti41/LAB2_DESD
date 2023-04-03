@@ -36,10 +36,10 @@ architecture Behavioral of jstk_uart_bridge is
 
 	-- These are examples of FSM states, you can use these if you want.
 
-	type tx_state_type is (DELAY, SEND_HEADER, SEND_JSTK_X, SEND_JSTK_Y, SEND_BUTTONS);
-	signal tx_state			: tx_state_type := SEND_HEADER;
-
-	-- ...
+	type tx_state_type is (DELAY, SEND_HEADER, SEND_JSTK_X, SEND_JSTK_Y, SEND_BUTTONS, TVALIDTOZERO);
+	signal tx_state			    : tx_state_type := SEND_HEADER;
+	signal precedent_state		: tx_state_type := TVALIDTOZERO;
+	
 
 	--------------------------------------------
 
@@ -50,7 +50,8 @@ architecture Behavioral of jstk_uart_bridge is
 	-- internal signals
 	signal m_axis_tvalid_int : std_logic := '0';
 	signal s_axis_tready_int : std_logic := '0';
-	signal delay_counter     : integer range 0 to TX_DELAY := 0;
+	signal delay_counter_tx  : integer range 0 to TX_DELAY := 0;
+	signal delay_counter_rx  : integer range 0 to TX_DELAY := 0;
 	signal m_axis_tdata_int  : std_logic_vector(JSTK_BITS DOWNTO 0) := (Others => '0');
 
 	----------position and button signals------------------
@@ -70,62 +71,57 @@ begin
 	--buttons <=(JSTK_BITS downto 2 => '0') & btn_trigger & btn_jstk;
 -----------------------------------------------------------
 
-	reset_process : process(aclk, aresetn)
-	begin
-		if rising_edge(aclk) then
-			if aresetn = '0' then
-				tx_state <= SEND_HEADER;
-				rx_state <= GET_HEADER;
-				m_axis_tvalid_int <= '0';
-				s_axis_tready_int <= '0';
-				delay_counter <= 0;
-			else
-				s_axis_tready_int <= '1';
-			end if;
-		end if;
-	end process;
+	--reset_process : process(aclk, aresetn)
+	--begin
+		--if rising_edge(aclk) then
+			--if aresetn = '0' then
+				--tx_state <= SEND_HEADER;
+				--rx_state <= GET_HEADER;
+				--m_axis_tvalid_int <= '0';
+				--s_axis_tready_int <= '0';
+				--delay_counter <= 0;
+			--else
+				--s_axis_tready_int <= '1';
+			--end if;
+		--end if;
+	--end process;
 	
-	jstk_X_Y_Button_transfer : process(jstk_x,jstk_y,btn_jstk,btn_trigger,aclk)
+	jstk_X_Y_Button_transfer : process(jstk_x,jstk_y,btn_jstk,btn_trigger,aclk,aresetn)
 	begin
-		if rising_edge(aclk) then
+		if aresetn = '0' then
+			tx_state <= SEND_HEADER;
+			m_axis_tvalid_int <= '0';
+			delay_counter_tx <= 0;
+		elsif rising_edge(aclk) then
 			case (tx_state) is
 				when DELAY =>
-					m_axis_tvalid_int <= '1';
-					if delay_counter = TX_DELAY  then
-						delay_counter <= 0;
+					m_axis_tvalid_int <= '0';
+					if delay_counter_tx = TX_DELAY  then
+						delay_counter_tx <= 0;
 						tx_state <= SEND_HEADER;
+						m_axis_tvalid_int <= '1';
 					else
-						delay_counter <= delay_counter + 1;	
+						delay_counter_tx <= delay_counter_tx + 1;	
 					end if;
 				when SEND_HEADER =>
-					m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
 						m_axis_tdata_int <= HEADER_CODE;
 						tx_state <= SEND_JSTK_X;
-						m_axis_tvalid_int <= '0';
 					end if;
 				when SEND_JSTK_X =>
-					m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
 						m_axis_tdata_int <= jstk_x(jstk_x'HIGH downto 2);
-						
 						tx_state <= SEND_JSTK_Y;
-						m_axis_tvalid_int <= '0';
 					end if;
 				when SEND_JSTK_Y =>
-					m_axis_tvalid_int<= '1';
 					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
 						m_axis_tdata_int <= jstk_y(jstk_y'HIGH downto 2);
-					
 						tx_state <= SEND_BUTTONS;
-						m_axis_tvalid_int <= '0';
 					end if;
 				when SEND_BUTTONS =>
-					m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
 						m_axis_tdata_int <= (JSTK_BITS downto 2 => '0') & btn_trigger & btn_jstk;
 						tx_state <= DELAY;
-						m_axis_tvalid_int <= '0';
 					end if;
 				
 				when others =>
@@ -134,44 +130,47 @@ begin
 		end if;
 	end process;
 
-	led_rgb_receive : process(aclk)
+	led_rgb_receive : process(aclk,aresetn)
 	begin
-		if rising_edge(aclk) then
+		if aresetn = '0' then
+			rx_state <= GET_HEADER;
+			s_axis_tready_int <= '0';
+			delay_counter_rx <= 0;
+		elsif rising_edge(aclk) then
 			case (rx_state) is
 				when IDLE =>
-					if delay_counter = TX_DELAY  then
-						delay_counter <= 0;
-						tx_state <= SEND_HEADER;
+					if delay_counter_rx = TX_DELAY  then
+						delay_counter_rx <= 0;
+						rx_state <= GET_HEADER;
 					else
-						delay_counter <= delay_counter + 1;	
+						delay_counter_rx <= delay_counter_rx + 1;	
 					end if;
 				
 				when GET_HEADER =>
-					if m_axis_tvalid_int = '1' and s_axis_tready_int = '1'then
+					s_axis_tready_int <= '1';
+					if s_axis_tvalid = '1' and s_axis_tready_int = '1'then
 						if s_axis_tdata = HEADER_CODE then
 							rx_state <= GET_LED_R;
 						end if;
 					end if;
 				when GET_LED_R =>
-					if m_axis_tvalid_int = '1' and s_axis_tready_int = '1'then
+					if s_axis_tvalid = '1' and s_axis_tready_int = '1'then
 						led_r <= s_axis_tdata;
 						rx_state <= GET_LED_G;
 					end if;
 				when GET_LED_B =>
-					if m_axis_tvalid_int = '1' and s_axis_tready_int = '1'then
+					if s_axis_tvalid = '1' and s_axis_tready_int = '1'then
 						led_b <= s_axis_tdata;
 						rx_state <= GET_LED_G;
 					end if;
 				when GET_LED_G =>
-					if m_axis_tvalid_int = '1' and s_axis_tready_int = '1'then
+					if s_axis_tvalid = '1' and s_axis_tready_int = '1'then
 						led_g <= s_axis_tdata;
 						rx_state <= IDLE;
 					end if;
-				
 				when others =>
 					rx_state <= IDLE;
 				end case;
-		end if;
-	end process;
-
+			end if;
+		end process;
 end architecture;

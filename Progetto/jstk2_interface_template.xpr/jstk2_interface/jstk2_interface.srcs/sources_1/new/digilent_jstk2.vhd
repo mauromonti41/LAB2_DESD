@@ -90,28 +90,20 @@ begin
 	jstk_y <= sig_jstk_y(0 TO 9);
 	btn_jstk <= sig_btn(1);
 	btn_trigger <= sig_btn(0);	
-
-
-	reset_process : process(aclk, aresetn)
-	begin
-		if rising_edge(aclk) then
+	
+	led_rgb_transfer : process(led_r,led_g,led_b,aclk,aresetn)
+		begin
 			if aresetn = '0' then
 				state_cmd <= WAIT_DELAY;
 				precedent_state_cmd <= SEND_DUMMY;
-				state_sts <= GET_X_LSB;
+				--state_sts <= GET_X_LSB;
 				DELAY_COUNTER <= (Others => '0');
 				DELAY_TO_WAIT <= to_unsigned(DELAY_CYCLES_PACKET, COUNTER_BITS);
 				m_axis_tvalid_int <= '0';
-			end if;
-		end if;
-	end process;
-	
-	led_rgb_transfer : process(led_r,led_g,led_b,aclk)
-		begin
-			if rising_edge(aclk) then
+			elsif rising_edge(aclk) then
 				case (state_cmd) is
 					when WAIT_DELAY =>
-					m_axis_tvalid_int <= '1';
+					m_axis_tvalid_int <= '0';
 					if DELAY_COUNTER = DELAY_TO_WAIT  then
 						DELAY_COUNTER <= (Others => '0');
 						if precedent_state_cmd = SEND_CMD then
@@ -129,43 +121,43 @@ begin
 							DELAY_COUNTER <= DELAY_COUNTER + 1;	
 						end if;
 				when SEND_CMD =>
+					m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
 						m_axis_tdata <= CMDSETLEDRGB;
 						precedent_state_cmd <= SEND_CMD;
 						state_cmd <= WAIT_DELAY;
-						m_axis_tvalid_int <= '0';
 						DELAY_TO_WAIT <= to_unsigned(DELAY_CYCLES_BYTE, COUNTER_BITS);
 					end if;
 				when SEND_RED =>
+					m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
 						m_axis_tdata <= led_r;
 						precedent_state_cmd <= SEND_RED;
 						state_cmd <= WAIT_DELAY;
-						m_axis_tvalid_int <= '0';
 						DELAY_TO_WAIT <= to_unsigned(DELAY_CYCLES_BYTE, COUNTER_BITS);
 					end if;
 				when SEND_GREEN =>
+					m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
 						m_axis_tdata <= led_g;
 						precedent_state_cmd <= SEND_GREEN;
 						state_cmd <= WAIT_DELAY;
-						m_axis_tvalid_int <= '0';
 						DELAY_TO_WAIT <= to_unsigned(DELAY_CYCLES_BYTE, COUNTER_BITS);
 					end if;
 				when SEND_BLUE =>
+					m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
 						m_axis_tdata <= led_b;
 						precedent_state_cmd <= SEND_BLUE;
 						state_cmd <= WAIT_DELAY;
-						m_axis_tvalid_int <= '0';
 						DELAY_TO_WAIT <= to_unsigned(DELAY_CYCLES_BYTE, COUNTER_BITS);
 					end if;
 				when SEND_DUMMY =>
+					m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then
 						m_axis_tdata <= (others => '0');
 						precedent_state_cmd <= SEND_DUMMY;
 						state_cmd <= WAIT_DELAY;
-						m_axis_tvalid_int <= '0';
 						DELAY_TO_WAIT <= to_unsigned(DELAY_CYCLES_PACKET, COUNTER_BITS);
 					end if;
 				when others =>
@@ -176,9 +168,11 @@ begin
 			end if;
 	end process;
 	
-	jstk_X_Y_Button_receive : process(aclk)
+	jstk_X_Y_Button_receive : process(aclk,aresetn)
 		begin
-			if rising_edge(aclk) then	
+			if aresetn = '0' then
+				state_sts <= GET_X_LSB;
+			elsif rising_edge(aclk) then	
 				case (state_sts) is
 					when GET_X_LSB =>
 						if s_axis_tvalid = '1' then
