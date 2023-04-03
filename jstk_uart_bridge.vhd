@@ -37,19 +37,19 @@ architecture Behavioral of jstk_uart_bridge is
 	-- These are examples of FSM states, you can use these if you want.
 
 	type tx_state_type is (DELAY, SEND_HEADER, SEND_JSTK_X, SEND_JSTK_Y, SEND_BUTTONS);
-	signal tx_state			: tx_state_type;
+	signal tx_state			: tx_state_type := SEND_HEADER;
 
 	-- ...
 
 	--------------------------------------------
 
 	type rx_state_type is (IDLE, GET_HEADER, GET_LED_R, GET_LED_G, GET_LED_B);
-	signal rx_state			: rx_state_type;
+	signal rx_state			: rx_state_type := GET_HEADER;
 	
 
 	-- internal signals
-	signal m_axis_tvalid_int : std_logic;
-	signal s_axis_tready_int : std_logic;
+	signal m_axis_tvalid_int : std_logic := '0';
+	signal s_axis_tready_int : std_logic := '0';
 	signal delay_counter     : integer range 0 to TX_DELAY := 0;
 
 
@@ -96,7 +96,6 @@ begin
 					else
 						delay_counter <= delay_counter + 1;	
 					end if;
-				
 				when SEND_HEADER =>
 					m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' and m_axis_tvalid_int = '1'then

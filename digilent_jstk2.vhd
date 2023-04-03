@@ -38,11 +38,7 @@ end digilent_jstk2;
 
 architecture Behavioral of digilent_jstk2 is
 
-	-- FIFO per collezione byte da JSTK a FPGA
-	
-	signal   my_mem 			: std_logic_vector(39 DOWNTO 0);
-
-	-- SetLEDRGB command, see the JSTK2 datasheet.
+	-- SetLEDRGB command, see the JSTK2 datasheet --
 	
 	constant CMDSETLEDRGB		: std_logic_vector(7 downto 0) := x"84";
 
@@ -84,7 +80,7 @@ architecture Behavioral of digilent_jstk2 is
 	signal auxiliary_vector   	   : std_logic_vector (7 DOWNTO 0);
 	signal precedent_state_cmd	   : state_cmd_type := SEND_CMD;
 	signal precedent_state_sts 	   : state_sts_type := GET_BUTTONS;
-	signal m_axis_tvalid_int       : std_logic;
+	signal m_axis_tvalid_int       : std_logic := '0';
 
 	----------------------------------------------------------------
 

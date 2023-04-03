@@ -1,0 +1,101 @@
+
+*** Running vivado
+    with args -log design_1_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl
+
+
+
+****** Vivado v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source design_1_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/mauro/Desktop/jstk2_interface_template.xpr/ip_repo'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Vivado/Vivado/2020.2/data/ip'.
+WARNING: [IP_Flow 19-4995] The host OS only allows 260 characters in a normal path. The IP cache path is more than 80 characters. If you experience issues with IP caching, please consider changing the IP cache to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. 
+Current IP cache path is c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.cache/ip 
+add_files: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 1019.305 ; gain = 0.000
+Command: synth_design -top design_1_wrapper -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 29956
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1019.305 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'design_1_wrapper' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd:27]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'D:/Vivado/Vivado/2020.2/scripts/rt/data/unisim_comp.v:36242' bound to instance 'SPI_M_0_io0_iobuf' of component 'IOBUF' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd:69]
+INFO: [Synth 8-6157] synthesizing module 'IOBUF' [D:/Vivado/Vivado/2020.2/scripts/rt/data/unisim_comp.v:36242]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'IOBUF' (1#1) [D:/Vivado/Vivado/2020.2/scripts/rt/data/unisim_comp.v:36242]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'D:/Vivado/Vivado/2020.2/scripts/rt/data/unisim_comp.v:36242' bound to instance 'SPI_M_0_io1_iobuf' of component 'IOBUF' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd:76]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'D:/Vivado/Vivado/2020.2/scripts/rt/data/unisim_comp.v:36242' bound to instance 'SPI_M_0_sck_iobuf' of component 'IOBUF' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd:83]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'D:/Vivado/Vivado/2020.2/scripts/rt/data/unisim_comp.v:36242' bound to instance 'SPI_M_0_ss_iobuf' of component 'IOBUF' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd:90]
+INFO: [Synth 8-3491] module 'design_1' declared at 'c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/synth/design_1.vhd:14' bound to instance 'design_1_i' of component 'design_1' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd:97]
+INFO: [Synth 8-638] synthesizing module 'design_1' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/synth/design_1.vhd:39]
+INFO: [Synth 8-3491] module 'design_1_AXI4Stream_UART_0_0' declared at 'C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/.Xil/Vivado-4816-LAPTOP-DUQD03P4/realtime/design_1_AXI4Stream_UART_0_0_stub.vhdl:5' bound to instance 'AXI4Stream_UART_0' of component 'design_1_AXI4Stream_UART_0_0' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/synth/design_1.vhd:218]
+INFO: [Synth 8-638] synthesizing module 'design_1_AXI4Stream_UART_0_0' [C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/.Xil/Vivado-4816-LAPTOP-DUQD03P4/realtime/design_1_AXI4Stream_UART_0_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'design_1_axi4stream_spi_master_0_0' declared at 'C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/.Xil/Vivado-4816-LAPTOP-DUQD03P4/realtime/design_1_axi4stream_spi_master_0_0_stub.vhdl:5' bound to instance 'axi4stream_spi_master_0' of component 'design_1_axi4stream_spi_master_0_0' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/synth/design_1.vhd:235]
+INFO: [Synth 8-638] synthesizing module 'design_1_axi4stream_spi_master_0_0' [C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/.Xil/Vivado-4816-LAPTOP-DUQD03P4/realtime/design_1_axi4stream_spi_master_0_0_stub.vhdl:30]
+INFO: [Synth 8-3491] module 'design_1_clk_wiz_0_0' declared at 'C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/.Xil/Vivado-4816-LAPTOP-DUQD03P4/realtime/design_1_clk_wiz_0_0_stub.vhdl:5' bound to instance 'clk_wiz_0' of component 'design_1_clk_wiz_0_0' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/synth/design_1.vhd:257]
+INFO: [Synth 8-638] synthesizing module 'design_1_clk_wiz_0_0' [C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/.Xil/Vivado-4816-LAPTOP-DUQD03P4/realtime/design_1_clk_wiz_0_0_stub.vhdl:15]
+INFO: [Synth 8-3491] module 'design_1_digilent_jstk2_0_0' declared at 'C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/.Xil/Vivado-4816-LAPTOP-DUQD03P4/realtime/design_1_digilent_jstk2_0_0_stub.vhdl:5' bound to instance 'digilent_jstk2_0' of component 'design_1_digilent_jstk2_0_0' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/synth/design_1.vhd:264]
+INFO: [Synth 8-638] synthesizing module 'design_1_digilent_jstk2_0_0' [C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/.Xil/Vivado-4816-LAPTOP-DUQD03P4/realtime/design_1_digilent_jstk2_0_0_stub.vhdl:25]
+INFO: [Synth 8-3491] module 'design_1_jstk_uart_bridge_0_0' declared at 'C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/.Xil/Vivado-4816-LAPTOP-DUQD03P4/realtime/design_1_jstk_uart_bridge_0_0_stub.vhdl:5' bound to instance 'jstk_uart_bridge_0' of component 'design_1_jstk_uart_bridge_0_0' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/synth/design_1.vhd:281]
+INFO: [Synth 8-638] synthesizing module 'design_1_jstk_uart_bridge_0_0' [C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/.Xil/Vivado-4816-LAPTOP-DUQD03P4/realtime/design_1_jstk_uart_bridge_0_0_stub.vhdl:26]
+INFO: [Synth 8-3491] module 'design_1_proc_sys_reset_0_0' declared at 'C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/.Xil/Vivado-4816-LAPTOP-DUQD03P4/realtime/design_1_proc_sys_reset_0_0_stub.vhdl:5' bound to instance 'proc_sys_reset_0' of component 'design_1_proc_sys_reset_0_0' [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/synth/design_1.vhd:299]
+INFO: [Synth 8-638] synthesizing module 'design_1_proc_sys_reset_0_0' [C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/.Xil/Vivado-4816-LAPTOP-DUQD03P4/realtime/design_1_proc_sys_reset_0_0_stub.vhdl:21]
+INFO: [Synth 8-256] done synthesizing module 'design_1' (2#1) [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/synth/design_1.vhd:39]
+INFO: [Synth 8-256] done synthesizing module 'design_1_wrapper' (3#1) [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd:27]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1019.305 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1019.305 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1019.305 ; gain = 0.000
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1019.305 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 4 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/design_1_AXI4Stream_UART_0_0/design_1_AXI4Stream_UART_0_0_in_context.xdc] for cell 'design_1_i/AXI4Stream_UART_0'
+Finished Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_AXI4Stream_UART_0_0/design_1_AXI4Stream_UART_0_0/design_1_AXI4Stream_UART_0_0_in_context.xdc] for cell 'design_1_i/AXI4Stream_UART_0'
+Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_axi4stream_spi_master_0_0/design_1_axi4stream_spi_master_0_0/design_1_axi4stream_spi_master_0_0_in_context.xdc] for cell 'design_1_i/axi4stream_spi_master_0'
+Finished Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_axi4stream_spi_master_0_0/design_1_axi4stream_spi_master_0_0/design_1_axi4stream_spi_master_0_0_in_context.xdc] for cell 'design_1_i/axi4stream_spi_master_0'
+Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0_in_context.xdc] for cell 'design_1_i/clk_wiz_0'
+Finished Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0_in_context.xdc] for cell 'design_1_i/clk_wiz_0'
+Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_proc_sys_reset_0_0/design_1_proc_sys_reset_0_0/design_1_proc_sys_reset_0_0_in_context.xdc] for cell 'design_1_i/proc_sys_reset_0'
+Finished Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_proc_sys_reset_0_0/design_1_proc_sys_reset_0_0/design_1_proc_sys_reset_0_0_in_context.xdc] for cell 'design_1_i/proc_sys_reset_0'
+Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_jstk_uart_bridge_0_0/design_1_jstk_uart_bridge_0_0/design_1_jstk_uart_bridge_0_0_in_context.xdc] for cell 'design_1_i/jstk_uart_bridge_0'
+Finished Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_jstk_uart_bridge_0_0/design_1_jstk_uart_bridge_0_0/design_1_jstk_uart_bridge_0_0_in_context.xdc] for cell 'design_1_i/jstk_uart_bridge_0'
+Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_digilent_jstk2_0_0/design_1_digilent_jstk2_0_0/design_1_digilent_jstk2_0_0_in_context.xdc] for cell 'design_1_i/digilent_jstk2_0'
+Finished Parsing XDC File [c:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.gen/sources_1/bd/design_1/ip/design_1_digilent_jstk2_0_0/design_1_digilent_jstk2_0_0/design_1_digilent_jstk2_0_0_in_context.xdc] for cell 'design_1_i/digilent_jstk2_0'
+Parsing XDC File [C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.srcs/constrs_1/new/io.xdc]
+Finished Parsing XDC File [C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.srcs/constrs_1/new/io.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.srcs/constrs_1/new/io.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/design_1_wrapper_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/design_1_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/mauro/Desktop/jstk2_interface_template.xpr/jstk2_interface/jstk2_interface.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1019.305 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 4 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 4 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1019.305 ; gain = 0.000
