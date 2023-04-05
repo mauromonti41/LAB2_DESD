@@ -7,7 +7,7 @@ entity digilent_jstk2 is
 	generic (
 		DELAY_US		: integer := 25;    -- Delay (in us) between two packets
 		CLKFREQ		 	: integer := 100_000_000;  -- Frequency of the aclk signal (in Hz)
-		SPI_SCLKFREQ 	: integer := 66_666 -- Frequency of the SPI SCLK clock signal (in Hz)
+		SPI_SCLKFREQ 	: integer := 5000 -- Frequency of the SPI SCLK clock signal (in Hz)
 	);
 	Port ( 
 		aclk 			: in  STD_LOGIC;
@@ -85,8 +85,8 @@ architecture Behavioral of digilent_jstk2 is
 begin
 
 	--m_axis_tvalid <= m_axis_tvalid_int;
-	jstk_x <= sig_jstk_x(15 DOWNTO 6);
-	jstk_y <= sig_jstk_y(15 DOWNTO 6);
+	jstk_x <= sig_jstk_x(9 DOWNTO 0);
+	jstk_y <= sig_jstk_y(9 DOWNTO 0);
 	--btn_jstk <= sig_btn(0);
 	--btn_trigger <= sig_btn(1);	
 
@@ -97,6 +97,15 @@ begin
 		'1' when SEND_GREEN,
 		'1' when SEND_RED,
 		'1' when SEND_DUMMY;
+	
+	with state_cmd select m_axis_tdata <=
+		(Others => '0') when WAIT_DELAY ,
+		CMDSETLEDRGB when SEND_CMD,
+		led_b when SEND_BLUE,
+		led_g when SEND_GREEN,
+		led_r when SEND_RED,
+		(Others => '0') when SEND_DUMMY;
+	
 
 	led_rgb_transfer : process(aclk)
 		begin
@@ -105,7 +114,7 @@ begin
 				precedent_state_cmd <= SEND_DUMMY;
 				--state_sts <= GET_X_LSB;
 				DELAY_COUNTER <= 0;
-				DELAY_TO_WAIT <= DELAY_CYCLES_BYTE;
+				DELAY_TO_WAIT <= DELAY_CYCLES_PACKET;
 			elsif rising_edge(aclk) then
 				case (state_cmd) is
 					when WAIT_DELAY =>
@@ -129,7 +138,7 @@ begin
 				when SEND_CMD =>
 					--m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' then
-						m_axis_tdata <= CMDSETLEDRGB;
+						--m_axis_tdata <= CMDSETLEDRGB;
 						state_cmd <= SEND_RED;
 						--precedent_state_cmd <= SEND_CMD;
 						--state_cmd <= WAIT_DELAY;
@@ -138,7 +147,7 @@ begin
 				when SEND_RED =>
 					--m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' then
-						m_axis_tdata <= led_r;
+						--m_axis_tdata <= led_r;
 						--precedent_state_cmd <= SEND_RED;
 						state_cmd <= SEND_GREEN;
 						--state_cmd <= WAIT_DELAY;
@@ -147,15 +156,15 @@ begin
 				when SEND_GREEN =>
 					--m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' then
-						m_axis_tdata <= led_g;
+						--m_axis_tdata <= led_g;
 						--precedent_state_cmd <= SEND_GREEN;
-						--state_cmd <= WAIT_DELAY;
 						state_cmd <= SEND_BLUE;
+						--state_cmd <= WAIT_DELAY;
 						--DELAY_TO_WAIT <= DELAY_CYCLES_BYTE;
 					end if;
 				when SEND_BLUE =>
 					if m_axis_tready = '1' then
-						m_axis_tdata <= led_b;
+						--m_axis_tdata <= led_b;
 						--precedent_state_cmd <= SEND_BLUE;
 						--state_cmd <= WAIT_DELAY;
 						state_cmd <= SEND_DUMMY;
@@ -163,15 +172,15 @@ begin
 					end if;
 				when SEND_DUMMY =>
 					if m_axis_tready = '1' then
-						m_axis_tdata <= (others => '0');
+						--m_axis_tdata <= (others => '0');
 						--precedent_state_cmd <= SEND_DUMMY;
 						state_cmd <= WAIT_DELAY;
-						--DELAY_TO_WAIT <= DELAY_CYCLES_PACKET;
+						DELAY_TO_WAIT <= DELAY_CYCLES_PACKET;
 					end if;
 				when others =>
-					--precedent_state_cmd <= SEND_DUMMY;
+					precedent_state_cmd <= SEND_DUMMY;
 					state_cmd <= WAIT_DELAY;
-					--DELAY_TO_WAIT <= DELAY_CYCLES_PACKET;
+					DELAY_TO_WAIT <= DELAY_CYCLES_PACKET;
 				end case;
 			end if;
 	end process;

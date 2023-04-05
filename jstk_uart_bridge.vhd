@@ -157,12 +157,12 @@ begin
 					end if;
 				when GET_LED_G =>
 					if s_axis_tvalid = '1' then
-						led_b <= s_axis_tdata;
+						led_g <= s_axis_tdata;
 						rx_state <= GET_LED_B;
 					end if;
 				when GET_LED_B =>
 					if s_axis_tvalid = '1' then
-						led_g <= s_axis_tdata;
+						led_b <= s_axis_tdata;
 						rx_state <= GET_HEADER;
 					end if;
 				when others =>
