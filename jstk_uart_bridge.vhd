@@ -5,7 +5,7 @@ entity jstk_uart_bridge is
 	generic (
 		HEADER_CODE		: std_logic_vector(7 downto 0) := x"c0"; -- Header of the packet
 		TX_DELAY		: positive := 1_000_000;    -- Pause (in clock cycles) between two packets
-		JSTK_BITS		: integer range 1 to 7 := 7    -- Number of bits of the joystick axis to transfer to the PC 
+		JSTK_BITS		: integer range 1 to 7 := 7    -- Number of bits of the joystick sensitivity
 	);
 	Port ( 
 		aclk 			: in  STD_LOGIC;
@@ -34,8 +34,6 @@ end jstk_uart_bridge;
 
 architecture Behavioral of jstk_uart_bridge is
 
-	-- These are examples of FSM states, you can use these if you want.
-
 	type tx_state_type is (DELAY, SEND_HEADER, SEND_JSTK_X, SEND_JSTK_Y, SEND_BUTTONS);
 	signal tx_state			: tx_state_type := SEND_HEADER;
 	
@@ -46,43 +44,15 @@ architecture Behavioral of jstk_uart_bridge is
 	
 
 	-- internal signals
-	signal m_axis_tvalid_int : std_logic := '0';
-	signal s_axis_tready_int : std_logic := '0';
 	signal delay_counter_tx  : integer range 0 to TX_DELAY := 0;
 	signal m_axis_tdata_int  : std_logic_vector(JSTK_BITS DOWNTO 0) := (Others => '0');
 
-	----------position and button signals------------------
-	--signal jstk_x_sign : std_logic_vector (JSTK_BITS downto 0);
-	--signal jstk_y_sign : std_logic_vector (JSTK_BITS downto 0);
-	--signal buttons 	   : std_logic_vector (JSTK_BITS downto 0);
-    --------------------------------------------------------
-
+	constant NUM_OF_BITS : integer range 0 to 8 := 8;
+	constant ZERO_BITS : std_logic_vector(NUM_OF_BITS-JSTK_BITS-1 DOWNTO 0) := (Others => '0');
+	
 begin
 
-----------position and button signals------------------
-	--m_axis_tvalid <= m_axis_tvalid_int;
-	--s_axis_tready <= s_axis_tready_int;
-	--m_axis_tdata <= m_axis_tdata_int;
-	--jstk_x_sign  <= jstk_x(jstk_x'HIGH downto 2);
-	--jstk_y_sign  <= jstk_y(jstk_y'HIGH downto 2);
-	--buttons <=(JSTK_BITS downto 2 => '0') & btn_trigger & btn_jstk;
------------------------------------------------------------
-
-	--reset_process : process(aclk, aresetn)
-	--begin
-		--if rising_edge(aclk) then
-			--if aresetn = '0' then
-				--tx_state <= SEND_HEADER;
-				--rx_state <= GET_HEADER;
-				--m_axis_tvalid_int <= '0';
-				--s_axis_tready_int <= '0';
-				--delay_counter <= 0;
-			--else
-				--s_axis_tready_int <= '1';
-			--end if;
-		--end if;
-	--end process;
-
+		-----master multiplexers	
 	with tx_state select m_axis_tvalid <=
 		'0' when DELAY,
 		'1' when SEND_HEADER,
@@ -90,16 +60,26 @@ begin
 		'1' when SEND_JSTK_Y,
 		'1' when SEND_BUTTONS;
 
+	with tx_state select m_axis_tdata <=
+    	(Others => '0') when DELAY,  -- we don't care about this byte since the m_axis_tvalid is '0' in this state
+		HEADER_CODE when SEND_HEADER,
+		ZERO_BITS & jstk_x(jstk_x'HIGH downto (jstk_x'HIGH-JSTK_BITS+1)) when SEND_JSTK_X,
+		ZERO_BITS & jstk_y(jstk_y'HIGH downto (jstk_y'HIGH-JSTK_BITS+1)) when SEND_JSTK_Y,
+		((NUM_OF_BITS-1 downto 2 => '0') & btn_trigger & btn_jstk) when SEND_BUTTONS;
+	
+		-----------------------------------------------------------------------------------------
+		
+		-----slave multiplexer
 	with rx_state select s_axis_tready <=
 		'0' when IDLE,
-		'1'	when GET_HEADER,
+		'1' when GET_HEADER,
 		'1'	when GET_LED_R,
 		'1' when GET_LED_G,
 		'1' when GET_LED_B;
 		
 	jstk_X_Y_Button_transfer : process(aclk)
 	begin
-		if aresetn = '0' then
+		if aresetn = '0' then --reset is not working, as explained on piazza
 			tx_state <= SEND_HEADER;
 			delay_counter_tx <= 0;
 		elsif rising_edge(aclk) then
@@ -108,28 +88,23 @@ begin
 					if delay_counter_tx = TX_DELAY  then
 						delay_counter_tx <= 0;
 						tx_state <= SEND_HEADER;
-						--m_axis_tvalid_int <= '1';
 					else
 						delay_counter_tx <= delay_counter_tx + 1;	
 					end if;
 				when SEND_HEADER =>
 					if m_axis_tready = '1' then
-						m_axis_tdata <= HEADER_CODE;
 						tx_state <= SEND_JSTK_X;
 					end if;
 				when SEND_JSTK_X =>
 					if m_axis_tready = '1' then
-						m_axis_tdata <= jstk_x(jstk_x'HIGH downto 2);
 						tx_state <= SEND_JSTK_Y;
 					end if;
 				when SEND_JSTK_Y =>
 					if m_axis_tready = '1' then
-						m_axis_tdata <= jstk_y(jstk_y'HIGH downto 2);
 						tx_state <= SEND_BUTTONS;
 					end if;
 				when SEND_BUTTONS =>
 					if m_axis_tready = '1' then
-						m_axis_tdata <= (JSTK_BITS downto 2 => '0') & btn_trigger & btn_jstk;
 						tx_state <= DELAY;
 					end if;
 				when others =>
@@ -140,7 +115,7 @@ begin
 
 	led_rgb_receive : process(aclk)
 	begin
-		if aresetn = '0' then
+		if aresetn = '0' then --reset is not working
 			rx_state <= GET_HEADER;
 		elsif rising_edge(aclk) then
 			case (rx_state) is

@@ -45,8 +45,6 @@ architecture Behavioral of digilent_jstk2 is
 	-- Do not forget that you MUST wait a bit between two packets. See the JSTK2 datasheet (and the SPI IP-Core README).
 	-- Inter-packet delay plus the time needed to transfer 1 byte (for the CS de-assertion)
 	constant DELAY_CYCLES_PACKET		: integer := DELAY_US * (CLKFREQ / 1_000_000) + CLKFREQ / SPI_SCLKFREQ;
-	constant DELAY_CYCLES_BYTE			: integer := DELAY_CYCLES_PACKET/4;
-	--constant COUNTER_BITS				: integer := integer(log2(real(DELAY_CYCLES_PACKET)))+1;
 	signal 	 DELAY_COUNTER				: integer range 0 to DELAY_CYCLES_PACKET := 0;
 	signal   DELAY_TO_WAIT				: integer range 0 to DELAY_CYCLES_PACKET := DELAY_CYCLES_PACKET;
 	
@@ -70,7 +68,7 @@ architecture Behavioral of digilent_jstk2 is
 
 	signal sig_jstk_x      : std_logic_vector (15 DOWNTO 0) := (others => '0');
 	signal sig_jstk_y	   : std_logic_vector (15 DOWNTO 0) := (others => '0');
-	signal sig_btn    : std_logic_vector (7 DOWNTO 0) := (others => '0');
+	signal sig_btn    	   : std_logic_vector (7 DOWNTO 0) := (others => '0');
 
 	----------------------------------------------------------------
 
@@ -83,12 +81,6 @@ architecture Behavioral of digilent_jstk2 is
 	----------------------------------------------------------------
 
 begin
-
-	--m_axis_tvalid <= m_axis_tvalid_int;
-	jstk_x <= sig_jstk_x(9 DOWNTO 0);
-	jstk_y <= sig_jstk_y(9 DOWNTO 0);
-	--btn_jstk <= sig_btn(0);
-	--btn_trigger <= sig_btn(1);	
 
 	with state_cmd select m_axis_tvalid <=
 		'0' when WAIT_DELAY,
@@ -112,7 +104,6 @@ begin
 			if aresetn = '0' then
 				state_cmd <= WAIT_DELAY;
 				precedent_state_cmd <= SEND_DUMMY;
-				--state_sts <= GET_X_LSB;
 				DELAY_COUNTER <= 0;
 				DELAY_TO_WAIT <= DELAY_CYCLES_PACKET;
 			elsif rising_edge(aclk) then
@@ -121,59 +112,27 @@ begin
 					if DELAY_COUNTER = DELAY_TO_WAIT  then
 						DELAY_COUNTER <= 0;
 						state_cmd <= SEND_CMD;
---						if precedent_state_cmd = SEND_CMD then
---							state_cmd <= SEND_RED;
---						elsif precedent_state_cmd = SEND_RED then
---							state_cmd <= SEND_GREEN;
---						elsif precedent_state_cmd = SEND_GREEN then
---							state_cmd <= SEND_BLUE;
---						elsif precedent_State_cmd = SEND_BLUE then
---							state_cmd <= SEND_DUMMY;
---						elsif precedent_State_cmd = SEND_DUMMY then
---							state_cmd <= SEND_CMD;
---						end if;
 					else
 							DELAY_COUNTER <= DELAY_COUNTER + 1;	
 						end if;
 				when SEND_CMD =>
-					--m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' then
-						--m_axis_tdata <= CMDSETLEDRGB;
 						state_cmd <= SEND_RED;
-						--precedent_state_cmd <= SEND_CMD;
-						--state_cmd <= WAIT_DELAY;
-						--DELAY_TO_WAIT <= DELAY_CYCLES_BYTE;
 					end if;
 				when SEND_RED =>
-					--m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' then
-						--m_axis_tdata <= led_r;
-						--precedent_state_cmd <= SEND_RED;
 						state_cmd <= SEND_GREEN;
-						--state_cmd <= WAIT_DELAY;
-						--DELAY_TO_WAIT <= DELAY_CYCLES_BYTE;
 					end if;
 				when SEND_GREEN =>
-					--m_axis_tvalid_int <= '1';
 					if m_axis_tready = '1' then
-						--m_axis_tdata <= led_g;
-						--precedent_state_cmd <= SEND_GREEN;
 						state_cmd <= SEND_BLUE;
-						--state_cmd <= WAIT_DELAY;
-						--DELAY_TO_WAIT <= DELAY_CYCLES_BYTE;
 					end if;
 				when SEND_BLUE =>
 					if m_axis_tready = '1' then
-						--m_axis_tdata <= led_b;
-						--precedent_state_cmd <= SEND_BLUE;
-						--state_cmd <= WAIT_DELAY;
 						state_cmd <= SEND_DUMMY;
-						--DELAY_TO_WAIT <= DELAY_CYCLES_BYTE;
 					end if;
 				when SEND_DUMMY =>
 					if m_axis_tready = '1' then
-						--m_axis_tdata <= (others => '0');
-						--precedent_state_cmd <= SEND_DUMMY;
 						state_cmd <= WAIT_DELAY;
 						DELAY_TO_WAIT <= DELAY_CYCLES_PACKET;
 					end if;
@@ -213,8 +172,10 @@ begin
 						end if;
 					when GET_BUTTONS =>
 						if s_axis_tvalid = '1' then
-							--sig_btn <= s_axis_tdata;
 							state_sts <= GET_X_LSB;
+							--output signals are updated here to avoid information missmatch
+							jstk_x <= sig_jstk_x(9 DOWNTO 0);
+							jstk_y <= sig_jstk_y(9 DOWNTO 0);
 							btn_jstk <= s_axis_tdata(0);
 							btn_trigger <= s_axis_tdata(1);
 						end if;
