@@ -109,37 +109,37 @@ begin
 			elsif rising_edge(aclk) then
 				case (state_cmd) is
 					when WAIT_DELAY =>
-					if DELAY_COUNTER = DELAY_TO_WAIT  then
-						DELAY_COUNTER <= 0;
-						state_cmd <= SEND_CMD;
-					else
-							DELAY_COUNTER <= DELAY_COUNTER + 1;	
+						if DELAY_COUNTER = DELAY_TO_WAIT  then
+							DELAY_COUNTER <= 0;
+							state_cmd <= SEND_CMD;
+						else
+								DELAY_COUNTER <= DELAY_COUNTER + 1;	
 						end if;
-				when SEND_CMD =>
-					if m_axis_tready = '1' then
-						state_cmd <= SEND_RED;
-					end if;
-				when SEND_RED =>
-					if m_axis_tready = '1' then
-						state_cmd <= SEND_GREEN;
-					end if;
-				when SEND_GREEN =>
-					if m_axis_tready = '1' then
-						state_cmd <= SEND_BLUE;
-					end if;
-				when SEND_BLUE =>
-					if m_axis_tready = '1' then
-						state_cmd <= SEND_DUMMY;
-					end if;
-				when SEND_DUMMY =>
-					if m_axis_tready = '1' then
+					when SEND_CMD =>
+						if m_axis_tready = '1' then
+							state_cmd <= SEND_RED;
+						end if;
+					when SEND_RED =>
+						if m_axis_tready = '1' then
+							state_cmd <= SEND_GREEN;
+						end if;
+					when SEND_GREEN =>
+						if m_axis_tready = '1' then
+							state_cmd <= SEND_BLUE;
+						end if;
+					when SEND_BLUE =>
+						if m_axis_tready = '1' then
+							state_cmd <= SEND_DUMMY;
+						end if;
+					when SEND_DUMMY =>
+						if m_axis_tready = '1' then
+							state_cmd <= WAIT_DELAY;
+							DELAY_TO_WAIT <= DELAY_CYCLES_PACKET;
+						end if;
+					when others =>
+						precedent_state_cmd <= SEND_DUMMY;
 						state_cmd <= WAIT_DELAY;
 						DELAY_TO_WAIT <= DELAY_CYCLES_PACKET;
-					end if;
-				when others =>
-					precedent_state_cmd <= SEND_DUMMY;
-					state_cmd <= WAIT_DELAY;
-					DELAY_TO_WAIT <= DELAY_CYCLES_PACKET;
 				end case;
 			end if;
 	end process;
